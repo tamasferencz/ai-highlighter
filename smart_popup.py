@@ -21,7 +21,7 @@ def ask_ollama(text):
     prompt = f"""
     You got a text in any language -> answers ARE in ENGLISH only.
     If input question ->  answer it in SHORT form (only the correct answer, no explanation).
-    If input is simple text -> expain it in SHORT form (maximum 1 or 2 sentences).
+    If input is simple text -> expain it in SHORT form (at least 2 sentence and maximum 4 sentences).
     Text input: "{text}"
     """
     
