@@ -17,7 +17,7 @@ last_clipboard = pyperclip.paste()
 
 def ask_ollama(text, x, y):
     prompt = f"""
-    You got a text in any language -> answers ARE in that SAME language.
+    You got a text in any language -> answers ARE in ENGLISH only.
     If input question ->  answer it in SHORT form (only the correct answer, no explanation).
     If input is simple text -> expain it in SHORT form (maximum 1 or 2 sentences).
     Text input: "{text}"
@@ -58,7 +58,7 @@ def on_click(x, y, button, pressed):
                     
                     if new_clipboard != last_clipboard and new_clipboard.strip():
                         last_clipboard = new_clipboard
-                        print(f"Selection noticed: {new_clipboard[:30]}... Sending to Ollama!")
+                        print(f"Selection noticed: {new_clipboard[:30]}...")
                         threading.Thread(target=ask_ollama, args=(new_clipboard, x, y), daemon=True).start()
 
 def create_popup(x, y, text):
@@ -66,14 +66,14 @@ def create_popup(x, y, text):
     popup.wm_overrideredirect(True)
     popup.attributes('-topmost', True)
     
-    popup.geometry(f"+{int(x) + 15}+{int(y) + 15}")
+    popup.geometry(f"+{int(x) + 30}+{int(y) + 30}")
     
     frame = tk.Frame(popup, bg="#FFFFFF", highlightbackground="#FFFFFF", highlightthickness=1)
     frame.pack(fill="both", expand=True)
     
     lbl = tk.Label(frame, text=text, bg="#000000", fg="#FFFFFF", 
                    font=("Helvetica", 16), justify="left", wraplength=350,
-                   padx=15, pady=15)
+                   padx=30, pady=30)
     lbl.pack()
     
     lbl.bind("<Button-1>", lambda e: popup.destroy())
